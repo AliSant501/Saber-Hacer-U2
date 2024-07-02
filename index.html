@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos del Mouse y DOM</title>
+    <style>
+        @keyframes colorChange {
+            0% { color: #3498db; }
+            25% { color: #e74c3c; }
+            50% { color: #f1c40f; }
+            75% { color: #2ecc71; }
+            100% { color: #3498db; }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes sparkle {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--translate-x), var(--translate-y));
+            }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #210A05;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+        #title {
+            font-size: 1.5em;
+            margin-right: auto;
+            margin-left: 20px;
+            color: white;
+            animation: colorChange 2s infinite;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+        #title:hover {
+            animation: blink 1s infinite;
+            color: #3498db;
+        }
+        #buttonContainer {
+            margin-top: 70px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dynamicButton {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none; /* Nuevo */
+            display: inline-block; /* Nuevo */
+            text-align: center; /* Nuevo */
+            width: 200px; /* Nuevo */
+            border-radius: 5px; /* Nuevo */
+        }
+        .dynamicButton:hover {
+            background-color: #2ecc71;
+            transform: scale(1.1);
+        }
+        .dynamicButton:active {
+            transform: scale(0.9);
+        }
+
+        #imageContainer {
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        #imageContainer img {
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(44,62,80,1));
+            transition: all 0.1s ease;
+            z-index: -1;
+        }
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div id="background"></div>
+    <nav>
+        <div id="title">Memelandia</div>
+        <a href="#">Home</a>
+    </nav>
+    <div id="buttonContainer">
+        <h1 id="title">Bienvenidos a Memelandia</h1>
+        <a class="dynamicButton" id="continueButton" href="principal.html">Click aquí para continuar</a>
+    </div>
+    <div id="imageContainer">
+        <img src="img/1.jpg" alt="Placeholder Image">
+    </div>
+
+    <script src="events.js"></script>
+</body>
+</html>
